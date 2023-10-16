@@ -14,7 +14,7 @@ namespace ProtoType.Models
             var url = "https://whatthecommit.com/index.txt";
             var response = client.GetStringAsync(url).Result;
 
-            HashSet<string> filter = new HashSet<string>() { "fuck", "fucking", "shit", "shitting", "Fuck", "Fucking", "Shit", "Shitting" };
+            HashSet<string> filter = new HashSet<string>() { "fuck", "fucking", "shit", "shitting", "Fuck", "Fucking", "Shit", "Shitting" }; //Refactor with use .ToLower() in conditional.
             var generatedWords = response.ToList();
             var hasFilteredWord = generatedWords.Where(word => word.Equals(filter.Any())).ToList();
             bool isGood = true;
