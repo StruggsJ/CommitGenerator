@@ -22,6 +22,10 @@ namespace ProtoType.Controllers
             //var root = JsonConvert.ToString(response);
             // var root = response.ToString(); 
 
+            //Add profany filter (using linq (contains)); refer to material design
+            //https://css-tricks.com/css-switch-case-conditions/
+            //Thread Sleep (3000),
+
             var api = new APICall();
             var generatedCommit = api.GetCommit();
             return View(generatedCommit);
