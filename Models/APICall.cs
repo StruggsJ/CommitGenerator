@@ -6,7 +6,7 @@ namespace ProtoType.Models
     public class APICall
     {
 
-        //To-Do: Figure out why the filter is not working properly. 
+        //To-Do: Transfer this over to the main page inside a clickable button.
 
         public CommitRoot GetCommit()
         {
