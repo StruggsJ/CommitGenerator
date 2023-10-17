@@ -14,16 +14,18 @@ namespace ProtoType.Models
             var url = "https://whatthecommit.com/index.txt";
             var response = client.GetStringAsync(url).Result;
 
-            HashSet<string> filter = new HashSet<string>() { "fuck", "fucking", "shit", "shitting", "Fuck", "Fucking", "Shit", "Shitting" }; //Refactor with use .ToLower() in conditional.
-            var generatedWords = response.ToList();
-            var hasFilteredWord = generatedWords.Where(word => word.Equals(filter.Any())).ToList();
+            HashSet<string> filter = new HashSet<string>() { "fuck", "fucking", "shit", "shitting", "fuckup" }; 
+            var generatedWords = response.Split(' ').ToList();
             bool isGood = true;
+            string screenedWord = "";
 
             foreach (var word in generatedWords)
             {
-                if (hasFilteredWord.Contains(word))
+                screenedWord = word.ToLower();
+                if (filter.Contains(screenedWord) == true)
                 {
                     isGood = false;
+                    break;
                 }
                 else
                 {
@@ -34,19 +36,23 @@ namespace ProtoType.Models
             while (isGood == false)
             {
                 response = client.GetStringAsync(url).Result;
-                generatedWords = response.ToList();
-                hasFilteredWord = generatedWords.Where(word => word.Equals(filter.Any())).ToList();
+                generatedWords = response.Split(' ').ToList();
+                
 
                 foreach (var word in generatedWords)
                 {
-                    if (hasFilteredWord.Contains(word))
+                    screenedWord = word.ToLower();
+                    if (filter.Contains(screenedWord) == true)
                     {
                         isGood = false;
+                        break;
                     }
                     else
                     {
 
                     }
+
+                    isGood = true;
                 }
             }
 
