@@ -14,14 +14,15 @@ namespace ProtoType.Models
             var url = "https://whatthecommit.com/index.txt";
             var response = client.GetStringAsync(url).Result;
 
-            HashSet<string> filter = new HashSet<string>() { "fuck", "fucking", "shit", "shitting", "fuckup", "ass", "asshole", "damn", "damnit", "asshat" }; 
+            HashSet<string> filter = new HashSet<string>() { "fuck", "fucking", "shit", "shitting", "fuckup", "ass", "asshole", "damn", "damnit", "asshat" };
+            char[] punctuationList = { '.', '?', '!', ' ', ',' };
             var generatedWords = response.Split(' ').ToList();
             bool isGood = true;
             string screenedWord = "";
 
             foreach (var word in generatedWords)
             {
-                screenedWord = word.ToLower();
+                screenedWord = word.ToLower().Trim().TrimEnd(punctuationList);
                 if (filter.Contains(screenedWord) == true)
                 {
                     isGood = false;
@@ -41,7 +42,7 @@ namespace ProtoType.Models
 
                 foreach (var word in generatedWords)
                 {
-                    screenedWord = word.ToLower();
+                    screenedWord = word.ToLower().Trim().TrimEnd(punctuationList);
                     if (filter.Contains(screenedWord) == true)
                     {
                         isGood = false;
