@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Linq;
 
 namespace ProtoType.Models
 
@@ -6,15 +8,13 @@ namespace ProtoType.Models
     public class APICall
     {
 
-        //To-Do: Transfer this over to the main page inside a clickable button.
-
         public CommitRoot GetCommit()
         {
             var client = new HttpClient();
             var url = "https://whatthecommit.com/index.txt";
             var response = client.GetStringAsync(url).Result;
 
-            HashSet<string> filter = new HashSet<string>() { "fuck", "fucking", "shit", "shitting", "fuckup" }; 
+            HashSet<string> filter = new HashSet<string>() { "fuck", "fucking", "shit", "shitting", "fuckup", "ass", "asshole", "damn", "damnit", "asshat" }; 
             var generatedWords = response.Split(' ').ToList();
             bool isGood = true;
             string screenedWord = "";
